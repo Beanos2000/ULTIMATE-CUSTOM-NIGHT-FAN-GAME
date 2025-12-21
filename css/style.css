@@ -5,25 +5,6 @@ body {
     font-family: monospace;
 }
 
-#menu {
-    width: 100vw;
-    height: 100vh;
-    background: black;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.anim {
-    margin: 15px;
-}
-
-input[type="range"] {
-    width: 200px;
-}
-
 #office {
     width: 100vw;
     height: 100vh;
