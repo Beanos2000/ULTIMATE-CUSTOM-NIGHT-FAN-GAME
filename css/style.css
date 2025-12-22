@@ -5,16 +5,65 @@ body {
     font-family: monospace;
 }
 
+@keyframes officeSway {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-4px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        opacity: 0.28;
+    }
+
+    50% {
+        opacity: 0.31;
+    }
+
+    70% {
+        opacity: 0.3;
+    }
+}
+
 #office {
     width: 100vw;
     height: 100vh;
-    background: #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    animation: officeSway 6s ease-in-out infinite;
 }
 
-button {
+#office::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(../resources/images/officeImage.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+#lightOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.26);
+    z-index: 10;
+    pointer-events: none;
+    animation: flicker 4s infinite;
+}
+
+#leftDoor {
     margin-top: 30px;
     font-size: 18px;
 }
