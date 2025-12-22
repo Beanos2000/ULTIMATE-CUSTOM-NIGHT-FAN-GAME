@@ -5,20 +5,6 @@ body {
     font-family: monospace;
 }
 
-@keyframes officeSway {
-    0% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(-4px);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
 @keyframes flicker {
 
     0%,
@@ -40,7 +26,6 @@ body {
     height: 100vh;
     position: relative;
     overflow: hidden;
-    animation: officeSway 6s ease-in-out infinite;
 }
 
 #office::before {
