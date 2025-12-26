@@ -16,7 +16,6 @@ const timer = document.getElementById("time");
 // ---Game Variables--- \\
 let power = 100;
 let time = 0;
-let gameActive = false;
 
 let leftDoorClosed = false;
 
@@ -33,7 +32,6 @@ let freddy = {
 
 function startFreddy() {
     freddy.timer = setInterval(() => {
-        if (!gameActive) return;
 
         const chance = Math.random() * 20;
 
@@ -58,33 +56,35 @@ function startFreddy() {
 
 // Winning and Losing
 function gameOver() {
-    gameActive = false;
-    alert("You lose, reloading page...");
+    alert("YOU LOSE");
     location.reload();
 }
 
 function gameWin() {
-    gameActive = false;
-    alert("You Win, reloading page...");
+    alert("YOU SURVIVED");
     location.reload();
 }
 
-// Starting The Game
+// Start The Game
 startButton.addEventListener("click", () => {
-    gameActive = true;
     menu.style.display = "none";
     office.style.display = "flex";
-    print(gameActive);
+
+    // Start Animatronics
+    if (freddy.difficulty > 0) startFreddy();
+
+    // Start Main Game Loop
+    setInterval(gameLoop, 1000);
+
+    // Left Door
+    leftDoorButton.addEventListener("click", function () {
+        leftDoorClosed = !leftDoorClosed;
+        console.log("Left door closed: " + leftDoorClosed);
+    })
 })
 
 // Main Game Loop
-
-if (gameActive) {
-    print("Game started");
-}
-
 function gameLoop() {
-
     // Time
     time++;
 
@@ -104,43 +104,10 @@ function gameLoop() {
     // Drain Power
     power -= .5;
     if (leftDoorClosed) power -= 1;
-    else power -= 1;
 
     if (power <= 0) {
         power = 0;
         gameOver();
     }
     powerDisplay.textContent = `Power: ${Math.floor(power)}%`;
-
-    // Left Door
-    leftDoorButton.addEventListener("click", function () {
-        leftDoorClosed = !leftDoorClosed;
-        console.log("Left door closed: " + leftDoorClosed);
-    })
 };
-
-if (gameActive) {
-    // Check for active animatronics
-    if (freddy.difficulty > 0) {
-        startFreddy();
-    }
-
-    //-- Time
-    const timeInterval = setInterval(() => {
-        time++;
-
-        if (time >= 270) {
-            clearInterval(timeInterval);
-            return;
-        }
-
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-
-        const formattedTime = `${minutes}:${seconds.toString().padStart(2, "0")} AM`;
-
-        timer.textContent = formattedTime;
-    }, 1000);
-
-
-}
