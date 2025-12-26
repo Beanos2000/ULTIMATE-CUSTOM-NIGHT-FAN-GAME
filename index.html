@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Custom Night</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
     <!-- Menu -->
     <div id="menu" style="display: block;">
         <h1 id="gameTitle">UCN Fan Game</h1>
+
+        <!-- Freddy UI -->
+        <img src="./resources/images/freddy.png" alt="freddy">
+        <div>
+            <button id="increaseFreddy">+</button>
+            <span id="freddyDiffiulty">0</span>
+            <button id="decreaseFreddy">-</button>
+        </div>
+
         <button id="startButton">Start Night</button>
     </div>
 
@@ -24,4 +35,5 @@
     <script type="module" src="./js/game.js"></script>
     <script type="module" src="./js/details.js"></script>
 </body>
+
 </html>

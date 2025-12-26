@@ -1,8 +1,3 @@
-// Positions
-// position: 0 is Stage
-// position: 1 is Hall
-// position 2 is Office
-
 // ---HTML elements--- \\
 const office = document.getElementById("office");
 const menu = document.getElementById("menu");
@@ -13,11 +8,17 @@ const startButton = document.getElementById("startButton");
 const powerDisplay = document.getElementById("power");
 const timer = document.getElementById("time");
 
+// Freddy
+const increaseFreddyButton = document.getElementById("increaseFreddy");
+const decreaseFreddyButton = document.getElementById("decreaseFreddy");
+const freddyDifficultyText = document.getElementById("freddyDiffiulty");
+
 // ---Game Variables--- \\
 let power = 100;
 let time = 0;
-
 let leftDoorClosed = false;
+
+let freddyDifficultyValue = 0;
 
 // -----Animatronics----- \\
 
@@ -25,10 +26,24 @@ let leftDoorClosed = false;
 let freddy = {
     name: "Freddy",
     position: 0,
-    difficulty: 10,
+    difficulty: 0,
     moveInterval: 5000,
     timer: null
 };
+
+increaseFreddyButton.addEventListener("click", () => {
+    if (freddyDifficultyValue < 20) {
+        freddyDifficultyValue++;
+        freddyDifficultyText.textContent = freddyDifficultyValue;
+    }
+})
+
+decreaseFreddyButton.addEventListener("click", () => {
+    if (freddyDifficultyValue > 0) {
+        freddyDifficultyValue--;
+        freddyDifficultyText.textContent = freddyDifficultyValue;
+    }
+})
 
 function startFreddy() {
     freddy.timer = setInterval(() => {
@@ -71,6 +86,7 @@ startButton.addEventListener("click", () => {
     office.style.display = "flex";
 
     // Start Animatronics
+    freddy.difficulty = freddyDifficultyValue;
     if (freddy.difficulty > 0) startFreddy();
 
     // Start Main Game Loop
