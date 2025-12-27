@@ -5,20 +5,9 @@ body {
     font-family: monospace;
 }
 
-@keyframes flicker {
-
-    0%,
-    100% {
-        opacity: 0.28;
-    }
-
-    50% {
-        opacity: 0.31;
-    }
-
-    70% {
-        opacity: 0.3;
-    }
+#animatronicImage {
+    width: 100px;
+    height: 100px;
 }
 
 #office {
@@ -37,15 +26,6 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
-}
-
-#lightOverlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.26);
-    z-index: 10;
-    pointer-events: none;
-    animation: flicker 4s infinite;
 }
 
 #leftDoor {

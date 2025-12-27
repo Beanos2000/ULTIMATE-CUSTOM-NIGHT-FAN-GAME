@@ -14,11 +14,19 @@
         <h1 id="gameTitle">UCN Fan Game</h1>
 
         <!-- Freddy UI -->
-        <img src="./resources/images/freddy.png" alt="freddy">
+        <img id="animatronicImage" src="./resources/images/freddy.png" alt="freddy">
         <div>
-            <button id="increaseFreddy">+</button>
-            <span id="freddyDiffiulty">0</span>
             <button id="decreaseFreddy">-</button>
+            <span id="freddyDiffiulty">0</span>
+            <button id="increaseFreddy">+</button>
+        </div>
+
+        <!-- Bonnie UI -->
+         <img id="animatronicImage" src="./resources/images/bonnie.png" alt="Bonnie">
+         <div>
+            <button id="decreaseBonnie">-</button>
+            <span id="bonnieDiffiulty">0</span>
+            <button id="increaseBonnie">+</button>
         </div>
 
         <button id="startButton">Start Night</button>
@@ -26,6 +34,7 @@
 
     <!-- Office -->
     <div id="office" style="display: none;">
+        <button id="maskButton">Mask</button>
         <button id="leftDoor">Left Door</button>
         <div id="power">Power: 100%</div>
         <div id="time">0:00 AM</div>

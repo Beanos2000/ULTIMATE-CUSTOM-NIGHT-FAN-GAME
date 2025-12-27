@@ -3,6 +3,7 @@ const office = document.getElementById("office");
 const menu = document.getElementById("menu");
 
 const leftDoorButton = document.getElementById("leftDoor");
+const maskButton = document.getElementById("maskButton");
 const startButton = document.getElementById("startButton");
 
 const powerDisplay = document.getElementById("power");
@@ -13,12 +14,19 @@ const increaseFreddyButton = document.getElementById("increaseFreddy");
 const decreaseFreddyButton = document.getElementById("decreaseFreddy");
 const freddyDifficultyText = document.getElementById("freddyDiffiulty");
 
+// Bonnie
+const increaseBonnieButton = document.getElementById("increaseBonnie");
+const decreaseBonnieButton = document.getElementById("decreaseBonnie");
+const bonnieDifficultyText = document.getElementById("bonnieDiffiulty");
+
 // ---Game Variables--- \\
 let power = 100;
 let time = 0;
 let leftDoorClosed = false;
+let maskOn = false;
 
 let freddyDifficultyValue = 0;
+let bonnieDifficultyValue = 0;
 
 // -----Animatronics----- \\
 
@@ -48,7 +56,7 @@ decreaseFreddyButton.addEventListener("click", () => {
 function startFreddy() {
     freddy.timer = setInterval(() => {
 
-        const chance = Math.random() * 20;
+        const chance = Math.random() * 30;
 
         if (chance < freddy.difficulty) {
             freddy.position++;
@@ -65,6 +73,55 @@ function startFreddy() {
             }
         }
     }, freddy.moveInterval);
+};
+
+// Bonnie
+let bonnie = {
+    name: "Bonnie",
+    position: 0,
+    difficulty: 0,
+    attackInterval: 10000,
+    timer: null,
+    attackTimeout: null
+}
+
+increaseBonnieButton.addEventListener("click", () => {
+    if (bonnieDifficultyValue < 20) {
+        bonnieDifficultyValue++;
+        bonnieDifficultyText.textContent = bonnieDifficultyValue;
+    }
+})
+
+decreaseBonnieButton.addEventListener("click", () => {
+    if (bonnieDifficultyValue > 0) {
+        bonnieDifficultyValue--;
+        bonnieDifficultyText.textContent = bonnieDifficultyValue;
+    }
+})
+
+function startBonnie() {
+    bonnie.timer = setInterval(() => {
+        const chance = Math.random() * 20;
+
+        if (chance < bonnie.difficulty) {
+            bonnie.position++;
+            console.log("Bonnie is in office, put on the mask");
+            bonnieAttack();
+        }
+    }, bonnie.attackInterval);
+}
+
+function bonnieAttack() {
+    if (bonnie.attackTimeout) return;
+
+    bonnie.attackTimeout = setTimeout(() => {
+        if (maskOn) {
+            console.log("Bonnie was blocked by the door");
+            bonnie.position = 0;
+        } else {
+            gameOver();
+        }
+    }, 1000);
 }
 
 // -----Game Logic----- \\
@@ -89,8 +146,17 @@ startButton.addEventListener("click", () => {
     freddy.difficulty = freddyDifficultyValue;
     if (freddy.difficulty > 0) startFreddy();
 
+    bonnie.difficulty = bonnieDifficultyValue;
+    if (bonnie.difficulty > 0) startBonnie();
+
     // Start Main Game Loop
     setInterval(gameLoop, 1000);
+
+    // Mask
+    maskButton.addEventListener("click", function () {
+        maskOn = !maskOn;
+        console.log("Mask ON: " + maskOn);
+    });
 
     // Left Door
     leftDoorButton.addEventListener("click", function () {
