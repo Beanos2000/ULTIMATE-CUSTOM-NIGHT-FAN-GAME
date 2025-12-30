@@ -13,20 +13,46 @@
     <div id="menu" style="display: block;">
         <h1 id="gameTitle">UCN Fan Game</h1>
 
-        <!-- Freddy UI -->
-        <img id="animatronicImage" src="./resources/images/freddy.png" alt="freddy">
-        <div>
-            <button id="decreaseFreddy">-</button>
-            <span id="freddyDiffiulty">0</span>
-            <button id="increaseFreddy">+</button>
-        </div>
+        <div class="animatronics">
+            <!-- Freddy UI -->
+            <div class="animatronicCard">
+                <img id="animatronicImage" src="./resources/images/freddy.png" alt="freddy">
+                <div class="animatronicButtons">
+                    <button id="decreaseFreddy">-</button>
+                    <span id="freddyDiffiulty">0</span>
+                    <button id="increaseFreddy">+</button>
+                </div>
+            </div>
 
-        <!-- Bonnie UI -->
-         <img id="animatronicImage" src="./resources/images/bonnie.png" alt="Bonnie">
-         <div>
-            <button id="decreaseBonnie">-</button>
-            <span id="bonnieDiffiulty">0</span>
-            <button id="increaseBonnie">+</button>
+            <!-- Bonnie UI -->
+            <div class="animatronicCard">
+                <img id="animatronicImage" src="./resources/images/bonnie.png" alt="Bonnie">
+                <div class="animatronicButtons">
+                    <button id="decreaseBonnie">-</button>
+                    <span id="bonnieDiffiulty">0</span>
+                    <button id="increaseBonnie">+</button>
+                </div>
+            </div>
+
+            <!-- Chicka UI -->
+            <div class="animatronicCard">
+                <img id="animatronicImage" src="" alt="Chicka">
+                <div class="animatronicButtons">
+                    <button id="decreaseChicka">-</button>
+                    <span id="ChickaDiffiulty">0</span>
+                    <button id="increaseChicka">+</button>
+                </div>
+            </div>
+
+            <!-- Foxy UI -->
+            <div class="animatronicCard">
+                <img id="animatronicImage" src="" alt="Foxy">
+                <div class="animatronicButtons">
+                    <button id="decreaseFoxy">-</button>
+                    <span id="FoxyDiffiulty">0</span>
+                    <button id="increaseFoxy">+</button>
+                </div>
+            </div>
         </div>
 
         <button id="startButton">Start Night</button>
@@ -34,11 +60,16 @@
 
     <!-- Office -->
     <div id="office" style="display: none;">
-        <button id="maskButton">Mask</button>
-        <button id="leftDoor">Left Door</button>
-        <div id="power">Power: 100%</div>
-        <div id="time">0:00 AM</div>
-        <div id="lightOverlay"></div>
+        <div class="bottomButtons">
+            <button class="bottomButton" id="maskButton">Mask</button>
+        </div>
+        <div class="info">
+            <div id="time">0AM</div>
+            <div id="power">Power: 100%</div>
+        </div>
+        <button id="ventButton">Vent</button>
+        <button id="cupcakeButton" style="display: none;">Cupcake</button>
+        <button id="lightButton">Light</button>
     </div>
 
     <script type="module" src="./js/game.js"></script>
